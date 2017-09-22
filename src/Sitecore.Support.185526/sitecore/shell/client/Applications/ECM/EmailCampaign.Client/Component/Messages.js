@@ -224,7 +224,11 @@ function createNewMessage(messageContext, messageBar, language, app, sitecore) {
 
   var context = clone(app.currentContext);
 
-  sitecore.Pipelines.CreateNewMessage.execute({ app: app, currentContext: context });
+  //Added code issue 
+  if (!messages_isCreateMessageAlreadyClicked(messageName)) {
+  //Added code
+    sitecore.Pipelines.CreateNewMessage.execute({ app: app, currentContext: context });
+  }
   if (context.errorCount > 0) {
     return false;
   }
